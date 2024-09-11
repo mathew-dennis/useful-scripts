@@ -1,4 +1,5 @@
 #!/bin/bash
+#This script is intended to build and install adapttion package for redmi note 7 pro  
 
 #Temporary fix for bluetooth
 sudo touch /var/lib/bluetooth/board-address
