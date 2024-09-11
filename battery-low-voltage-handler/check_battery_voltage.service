@@ -1,0 +1,10 @@
+[Unit]
+Description=Check Battery Voltage and Shutdown if Below Threshold
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/check_battery_voltage.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
