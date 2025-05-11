@@ -4,6 +4,36 @@
 #Temporary fix for bluetooth
 sudo touch /var/lib/bluetooth/board-address
 
+# low voltage handler (temperary, don't use if your battery is good)
+
+
+SERVICE_NAME="battery-low-voltage-handler.service"
+SCRIPT_PATH="/usr/local/bin/battery-low-voltage-handler.sh"
+SERVICE_PATH="/etc/systemd/system/$SERVICE_NAME"
+
+# Check if service is installed and enabled
+if systemctl is-enabled --quiet "$SERVICE_NAME" && systemctl is-active --quiet "$SERVICE_NAME"; then
+    echo " $SERVICE_NAME is already installed, enabled, and running."
+    echo "No action needed"
+else
+    echo "  $SERVICE_NAME is not fully installed or not enabled. Proceeding with installation..."
+
+# Download the script
+echo " Downloading battery-low-voltage-handler.sh..."
+curl -L -o "$SCRIPT_PATH" https://raw.githubusercontent.com/mathew-dennis/useful-scripts/main/battery-low-voltage-handler/battery-low-voltage-handler.sh
+
+chmod +x "$SCRIPT_PATH"
+
+# Download the systemd service file
+echo "  Downloading battery-low-voltage-handler.service..."
+curl -L -o "$SERVICE_PATH" https://raw.githubusercontent.com/mathew-dennis/useful-scripts/main/battery-low-voltage-handler/battery-low-voltage-handler.service
+
+
+echo "  Enabling the service..."
+systemctl enable "$SERVICE_NAME"
+
+echo "✅ Done! The $SERVICE_NAME service is installed."
+
 # Build adaptation for device
 if [ -d "droidian-adaptation-xiaomi-violet" ] ;then
  cd droidian-adaptation-xiaomi-violet
