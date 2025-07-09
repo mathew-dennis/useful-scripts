@@ -7,7 +7,8 @@ echo "Welcome to Cutie Generic Project Builder
          2: cutie-launcher
          3: libcutiedesktopfilephraser
          4: qml-module-cutiewlc
-         5: cutie-wlc"
+         5: cutie-wlc
+         6: libcutiewlc"
         
 read -p "Please input project name: " input
 
@@ -22,6 +23,8 @@ elif [[ "$input" == "qml-module-cutiewlc" || "$input" == "4" ]]; then
   project="qml-module-cutiewlc"
 elif [[ "$input" == "cutie-wlc" || "$input" == "5" ]]; then
   project="cutie-wlc"
+elif [[ "$input" == "libcutiewlc" || "$input" == "6" ]]; then
+  project="libcutiewlc"
 else
   echo "Invalid input. Please try again." && exit 1
 fi
