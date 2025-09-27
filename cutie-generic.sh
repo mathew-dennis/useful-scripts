@@ -5,7 +5,7 @@ echo "Welcome to Cutie Generic Project Builder
         Available projects are:
          1: cutie-home
          2: cutie-launcher
-         3: libcutiedesktopfilephraser
+         3: libcutiedesktopfileparser
          4: qml-module-cutiewlc
          5: cutie-wlc
          6: libcutiewlc"
@@ -17,8 +17,8 @@ if [[ "$input" == "cutie-home" || "$input" == "1" ]]; then
   project="cutie-home"
 elif [[ "$input" == "cutie-launcher" || "$input" == "2" ]]; then
   project="cutie-launcher"
-elif [[ "$input" == "libcutiedesktopfilephraser" || "$input" == "3" ]]; then
-  project="libcutiedesktopfilephraser"
+elif [[ "$input" == "libcutiedesktopfileparser" || "$input" == "3" ]]; then
+  project="libcutiedesktopfileparser"
 elif [[ "$input" == "qml-module-cutiewlc" || "$input" == "4" ]]; then
   project="qml-module-cutiewlc"
 elif [[ "$input" == "cutie-wlc" || "$input" == "5" ]]; then
