@@ -1,7 +1,7 @@
 #!/system/bin/sh
 
 # 1. Initialize file and find the current OS name
-touch /userdata/current_os_name
+sudo touch /userdata/current_os_name
 CURRENT_OS=$(cat /userdata/current_os_name)
 
 if [ -z "$CURRENT_OS" ]; then
