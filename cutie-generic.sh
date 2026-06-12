@@ -9,7 +9,9 @@ echo "Welcome to Cutie Generic Project Builder
          4: qml-module-cutiewlc
          5: cutie-wlc
          6: libcutiewlc
-         7: cutie-settings"
+         7: cutie-settings
+         8: cutie-panel
+         9: libcutiesysteminfo"
         
 read -p "Please input project name: " input
 
@@ -28,6 +30,10 @@ elif [[ "$input" == "libcutiewlc" || "$input" == "6" ]]; then
   project="libcutiewlc"
 elif [[ "$input" == "cutie-settings" || "$input" == "7" ]]; then
   project="cutie-settings"
+elif [[ "$input" == "cutie-panel" || "$input" == "8" ]]; then
+  project="cutie-panel"
+elif [[ "$input" == "libcutiesysteminfo" || "$input" == "9" ]]; then
+  project="libcutiesysteminfo"
 else
   echo "Invalid input. Please try again." && exit 1
 fi
@@ -37,20 +43,20 @@ sleep .5
 
 if [ -d "$project" ] ;then
   echo "Directory $project exists. Pulling latest changes..."
-  cd $project
+  cd "$project" || exit 1
   git pull
-
 else
   echo "Cloning $project repository..."
   sudo apt-get -y install git
-  git clone --depth=1 https://github.com/mathew-dennis/$project.git
-  cd $project
+  git clone --depth=1 "https://github.com/mathew-dennis/$project.git"
+  cd "$project" || exit 1
   sudo apt-get -y build-dep .
 fi
 
-
+# Clean up old build dir if it exists from a previous pull run
+rm -rf build
 mkdir build
-cd build
+cd build || exit 1
 
 # Run cmake and make
 cmake --install-prefix=/usr .. || { echo "CMake failed."; exit 1; }
