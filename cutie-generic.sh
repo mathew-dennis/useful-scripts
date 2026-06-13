@@ -12,7 +12,7 @@ echo "Welcome to Cutie Generic Project Builder
          7: cutie-settings
          8: cutie-panel
          9: libcutiesysteminfo"
-        
+         
 read -p "Please input project name: " input
 
 # Handle project selection
