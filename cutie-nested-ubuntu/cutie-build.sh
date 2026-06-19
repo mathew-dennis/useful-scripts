@@ -33,7 +33,9 @@ echo "Welcome to Cutie Generic Project Builder
          19: libcutiemodem
          20: cutie-settings
          21: layer-shell-qt (KDE dependency)
-         22: libcutiesysteminfo"
+         22: libcutiesysteminfo
+         23: libcutiewaydroid
+         24: libcutiedatetime"
          
 read -p "Please input project name: " input
 
@@ -98,12 +100,12 @@ cmake .. \
 # 2. Logic for Build Sequence
 if [[ "$input" == "0" ]]; then
     # layer-shell-qt MUST be built very early as it is a core dependency
-    # Note: Added "libcutiesysteminfo" alongside the other structural/info libraries
+    # Note: Added libcutiewaydroid and libcutiedatetime alongside the other structural/info libraries
     projects=(
         "layer-shell-qt" "libcutiewlc" "libcutiestore" "libcutievolume" 
         "libcutiefeedback" "libcutienetworking" "libcutiemodem" 
-        "libcutiedesktopfileparser" "libcutiesysteminfo" "libatmosphere" "qt6-screencopy" 
-        "qt6-foreign-toplevel-management" "qt6-output-power-management" 
+        "libcutiedesktopfileparser" "libcutiesysteminfo" "libcutiewaydroid" "libcutiedatetime" 
+        "libatmosphere" "qt6-screencopy" "qt6-foreign-toplevel-management" "qt6-output-power-management" 
         "atmospheres" "qml-module-cutiewlc" "qml-module-cutie" 
         "cutie-wlc" "cutie-home" "cutie-launcher" "cutie-panel" 
         "cutie-keyboard" "cutie-settings"
@@ -136,6 +138,8 @@ else
         20|cutie-settings) project="cutie-settings" ;;
         21|layer-shell-qt) project="layer-shell-qt" ;;
         22|libcutiesysteminfo) project="libcutiesysteminfo" ;;
+        23|libcutiewaydroid) project="libcutiewaydroid" ;;
+        24|libcutiedatetime) project="libcutiedatetime" ;;
         *) echo "Invalid input." && exit 1 ;;
     esac
     build_project "$project"
