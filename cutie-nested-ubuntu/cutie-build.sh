@@ -55,7 +55,7 @@ build_project() {
         echo "Cloning $project repository..."
         # Unified organization logic
         if [[ "$project" == "layer-shell-qt" ]] ;then
-            git clone --depth=1 "https://github.com/KDE/layer-shell-qt.git"
+            git clone --branch v6.4.6 --depth=1 "https://github.com/KDE/layer-shell-qt.git"
         elif [[ "$project" == "qt6-screencopy" || "$project" == "qml-module-cutie" || \
               "$project" == "libatmosphere" || "$project" == "atmospheres" || \
               "$project" == "libcutiestore" || "$project" == "qt6-foreign-toplevel-management" || \
