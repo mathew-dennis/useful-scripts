@@ -78,18 +78,15 @@ build_project() {
     rm -rf build
     mkdir build && cd build || exit 1
 
-    # Configure CMake for standard system-wide installation (/usr)
-    cmake .. \
-      -DCMAKE_INSTALL_PREFIX="/usr" \
-      -DCMAKE_INSTALL_BINDIR=bin \
-      -DCMAKE_INSTALL_LIBDIR=lib \
-      -DKDE_INSTALL_QTPLUGINDIR="/usr/lib/x86_64-linux-gnu/qt6/plugins" \
-      -DKDE_INSTALL_QMLDIR="/usr/lib/x86_64-linux-gnu/qt6/qml" \
-      -DQT_PLUGIN_INSTALL_DIR="/usr/lib/x86_64-linux-gnu/qt6/plugins"
+ # Run cmake and make
+  cmake --install-prefix=/usr .. || { echo "CMake failed for $project."; return 1; }
+  make || { echo "Make failed for $project."; exit 1; }
 
-    make -j$(nproc) || { echo "Make failed on $project"; return 1; }
-    sudo make install || { echo "Install failed on $project"; return 1; }
+  # Install the project
+  sudo make install || { echo "Installation failed for $project."; return 1; }
 
+  echo "$project has been successfully built and installed!"
+  echo "----------------------------------------------------"
     return 0
 }
 
