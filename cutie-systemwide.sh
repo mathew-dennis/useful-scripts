@@ -27,7 +27,7 @@ read -rp "Please input project name or number: " input
 repo_org() {
     case $1 in
         layer-shell-qt) echo KDE ;;
-        qt6-screencopy|qml-module-cutie|libatmosphere|atmospheres|libcutiestore|\
+        qt6-screencopy|atmospheres|libcutiestore|\
         qt6-foreign-toplevel-management|qt6-output-power-management|cutie-panel|\
         libcutievolume|libcutiefeedback|cutie-keyboard|libcutienetworking|libcutiemodem)
             echo cutie-shell ;;
